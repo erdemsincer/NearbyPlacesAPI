@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="API Clients\" />
-    <Folder Include="Persistence\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
 
