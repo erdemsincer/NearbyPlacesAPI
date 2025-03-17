@@ -1,0 +1,6 @@
+@nearby_places_ui.Server_HostAddress = http://localhost:5132
+
+GET {{nearby_places_ui.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
