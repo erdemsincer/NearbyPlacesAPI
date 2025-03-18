@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NearbyPlaces.Application.DTOs.ReviewReplyDtos
 {
-    public class ResultReviewReplyDdto
+    public class ResultReviewReplyDto
     {
         public int Id { get; set; }
         public int ReviewId { get; set; }

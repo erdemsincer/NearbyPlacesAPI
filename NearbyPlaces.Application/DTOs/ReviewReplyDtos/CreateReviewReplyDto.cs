@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NearbyPlaces.Application.DTOs.ReviewReplyDtos
 {
-    public class CreateReviewReplyDdto
+    public class CreateReviewReplyDto
     {
         public string ReplyText { get; set; }
         public DateTime CreatedAt { get; set; }

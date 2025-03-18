@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using NearbyPlaces.Infrastructure.Persistence;
 using NearbyPlaces.Infrastructure.DependencyInjection;
+using NearbyPlaces.Application.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Repository ve servislerin injection'u
 builder.Services.AddInfrastructureServices();
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
