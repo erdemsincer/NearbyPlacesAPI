@@ -1,25 +1,21 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NearbyPlaces.Domain.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NearbyPlaces.Infrastructure.Persistence
 {
-    public class AppDbContext:DbContext
+    public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
 
-        // ✅ Kullanıcı ile ilgili tablolar
+        // Kullanıcı ve Roller
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
 
-        // ✅ Mekanlar ile ilgili tablolar
+        // Mekan ve ilişkili tablolar
         public DbSet<Place> Places { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<FavoritePlace> FavoritePlaces { get; set; }
@@ -27,7 +23,7 @@ namespace NearbyPlaces.Infrastructure.Persistence
         public DbSet<ReviewReply> ReviewReplies { get; set; }
         public DbSet<Photo> Photos { get; set; }
 
-        // ✅ Diğer tablolar
+        // Diğer tablolar
         public DbSet<ContactMessage> ContactMessages { get; set; }
         public DbSet<Notification> Notifications { get; set; }
 
@@ -35,7 +31,7 @@ namespace NearbyPlaces.Infrastructure.Persistence
         {
             base.OnModelCreating(modelBuilder);
 
-            // ✅ Kullanıcı & Roller ilişkisi (Many-to-Many)
+            // User & UserRole ilişkisi (Many-to-Many)
             modelBuilder.Entity<UserRole>()
                 .HasKey(ur => new { ur.UserId, ur.RoleId });
 
@@ -49,13 +45,19 @@ namespace NearbyPlaces.Infrastructure.Persistence
                 .WithMany(r => r.UserRoles)
                 .HasForeignKey(ur => ur.RoleId);
 
-            // ✅ Yorumlar ile mekan ilişkisi
+            // Place & Category ilişkisi
+            modelBuilder.Entity<Place>()
+                .HasOne(p => p.Category)
+                .WithMany(c => c.Places)
+                .HasForeignKey(p => p.CategoryId);
+
+            // Place & Review ilişkisi
             modelBuilder.Entity<Review>()
                 .HasOne(r => r.Place)
                 .WithMany(p => p.Reviews)
                 .HasForeignKey(r => r.PlaceId);
 
-            // ✅ Favori mekan ilişkisi
+            // FavoritePlace ilişkileri
             modelBuilder.Entity<FavoritePlace>()
                 .HasOne(fp => fp.User)
                 .WithMany()
@@ -66,11 +68,17 @@ namespace NearbyPlaces.Infrastructure.Persistence
                 .WithMany()
                 .HasForeignKey(fp => fp.PlaceId);
 
-            // ✅ Mekan & Fotoğraf ilişkisi
+            // Place & Photo ilişkisi
             modelBuilder.Entity<Photo>()
                 .HasOne(p => p.Place)
                 .WithMany(pl => pl.Photos)
                 .HasForeignKey(p => p.PlaceId);
+
+            // ReviewReply & Review ilişkisi
+            modelBuilder.Entity<ReviewReply>()
+                .HasOne(rr => rr.Review)
+                .WithMany(r => r.ReviewReplies)
+                .HasForeignKey(rr => rr.ReviewId);
         }
     }
 }

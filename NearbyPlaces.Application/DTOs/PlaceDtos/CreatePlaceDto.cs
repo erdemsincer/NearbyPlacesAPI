@@ -13,6 +13,6 @@ namespace NearbyPlaces.Application.DTOs.PlaceDtos
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public double Rating { get; set; }
-        public string Category { get; set; }
+        public int CategoryId { get; set; }   // Ekledik!
     }
 }

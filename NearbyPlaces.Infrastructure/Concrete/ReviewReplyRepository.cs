@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NearbyPlaces.Infrastructure.Concrete
 {
-    public class ReviewReplyRepository : GenericRepository<Review>, IReviewReplyRepository
+    public class ReviewReplyRepository : GenericRepository<ReviewReply>, IReviewReplyRepository
     {
         public ReviewReplyRepository(AppDbContext context) : base(context)
         {

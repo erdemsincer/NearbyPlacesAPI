@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NearbyPlaces.Application\NearbyPlaces.Application.csproj" />
     <ProjectReference Include="..\NearbyPlaces.Domain\NearbyPlaces.Domain.csproj" />
   </ItemGroup>
 

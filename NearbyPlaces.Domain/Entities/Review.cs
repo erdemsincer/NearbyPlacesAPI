@@ -16,6 +16,7 @@ namespace NearbyPlaces.Domain.Entities
         public User User { get; set; }
         public int PlaceId { get; set; }
         public Place Place { get; set; }
-        public ICollection<ReviewReply> Replies { get; set; }
+        public ICollection<ReviewReply> ReviewReplies { get; set; }
+
     }
 }

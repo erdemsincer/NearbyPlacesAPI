@@ -2,17 +2,16 @@ using Microsoft.EntityFrameworkCore;
 using NearbyPlaces.Infrastructure.Persistence;
 using NearbyPlaces.Infrastructure.DependencyInjection;
 using NearbyPlaces.Application.Common;
+using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Veritabaný baðlantýsý
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Repository ve servislerin injection'u
 builder.Services.AddInfrastructureServices();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
-
+builder.Services.AddMediatR(typeof(MappingProfile).Assembly);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -20,7 +19,6 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Swagger yapýlandýrmasý
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

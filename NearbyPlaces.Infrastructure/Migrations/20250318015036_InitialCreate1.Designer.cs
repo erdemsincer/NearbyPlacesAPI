@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NearbyPlaces.Infrastructure.Persistence;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NearbyPlaces.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250318015036_InitialCreate1")]
+    partial class InitialCreate1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -354,13 +357,11 @@ namespace NearbyPlaces.Infrastructure.Migrations
 
             modelBuilder.Entity("NearbyPlaces.Domain.Entities.Place", b =>
                 {
-                    b.HasOne("NearbyPlaces.Domain.Entities.Category", "Category")
+                    b.HasOne("NearbyPlaces.Domain.Entities.Category", null)
                         .WithMany("Places")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("NearbyPlaces.Domain.Entities.Review", b =>
@@ -385,7 +386,7 @@ namespace NearbyPlaces.Infrastructure.Migrations
             modelBuilder.Entity("NearbyPlaces.Domain.Entities.ReviewReply", b =>
                 {
                     b.HasOne("NearbyPlaces.Domain.Entities.Review", "Review")
-                        .WithMany("ReviewReplies")
+                        .WithMany("Replies")
                         .HasForeignKey("ReviewId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -428,7 +429,7 @@ namespace NearbyPlaces.Infrastructure.Migrations
 
             modelBuilder.Entity("NearbyPlaces.Domain.Entities.Review", b =>
                 {
-                    b.Navigation("ReviewReplies");
+                    b.Navigation("Replies");
                 });
 
             modelBuilder.Entity("NearbyPlaces.Domain.Entities.Role", b =>

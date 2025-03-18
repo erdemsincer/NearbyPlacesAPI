@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NearbyPlaces.Domain.Entities
+namespace NearbyPlaces.Application.Features.CQRS.Results.PlaceResult
 {
-    public class Place
+    public class PlaceResponseDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -15,10 +15,5 @@ namespace NearbyPlaces.Domain.Entities
         public double Longitude { get; set; }
         public double Rating { get; set; }
         public int CategoryId { get; set; }   // Ekledik!
-        public Category Category { get; set; }  // ➡️ Bunu ekliyorsun!
-
-        public ICollection<Review> Reviews { get; set; }
-        public ICollection<Photo> Photos { get; set; }
-        public ICollection<FavoritePlace> FavoritePlaces { get; set; }
     }
 }

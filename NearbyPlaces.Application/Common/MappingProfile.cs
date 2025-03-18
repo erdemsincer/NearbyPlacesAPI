@@ -11,6 +11,8 @@ using NearbyPlaces.Application.DTOs.UserRoleDtos;
 using NearbyPlaces.Application.DTOs.NotificationDtos;
 using NearbyPlaces.Application.DTOs.ReviewReplyDtos;
 using NearbyPlaces.Domain.Entities;
+using NearbyPlaces.Application.Features.CQRS.Results.PlaceResult;
+using NearbyPlaces.Application.Features.CQRS.Results.CategoryResult;
 
 namespace NearbyPlaces.Application.Common
 {
@@ -22,11 +24,14 @@ namespace NearbyPlaces.Application.Common
             CreateMap<Category, CreateCategoryDto>().ReverseMap();
             CreateMap<Category, UpdateCategoryDto>().ReverseMap();
             CreateMap<Category, ResultCategoryDto>().ReverseMap();
+            CreateMap<Category, CategoryResponseDto>().ReverseMap();
 
             // Place
             CreateMap<Place, CreatePlaceDto>().ReverseMap();
             CreateMap<Place, UpdatePlaceDto>().ReverseMap();
             CreateMap<Place, ResultPlaceDto>().ReverseMap();
+            CreateMap<Place, PlaceResponseDto>().ReverseMap();
+
 
             // User
             CreateMap<User, CreateUserDto>().ReverseMap();
