@@ -18,4 +18,4 @@ namespace NearbyPlaces.Domain.Entities
         public ICollection<UserRole> UserRoles { get; set; }
     }
 }
-}
+
